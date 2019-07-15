@@ -10,7 +10,8 @@ class App extends Component {
 			{name:"three", text: "lorem1111111111111111111115"},
 			{name:"four", text: "best text"},
 		],
-		pageTittle: "My react task"
+		pageTittle: "My react task",
+		showNote: false
 	}
 
 	changeTittleHandler = (newTittle) => {
@@ -21,10 +22,30 @@ class App extends Component {
 		})
 	};
 
-	handleInput = (event) => {
+	toggleNoteHandler = () => {
 		this.setState({
-			pageTittle: event.target.value
+			showNote: !this.state.showNote
 
+		})
+	}
+
+	onChangeName = (value, index) => {
+		
+		const note = [...this.state.note]
+		note[index].name = value
+
+		this.setState({
+			note
+		})
+	}
+
+	deleteHandler = (index) => {
+		let note = [...this.state.note]
+
+		note.splice(index, 1)
+
+		this.setState({
+			note
 		})
 	}
 
@@ -36,12 +57,19 @@ class App extends Component {
 			<div className="App" style={{ackgroundColor: "yellow"}}>
 				<h1>{this.state.pageTittle}</h1>
 
-				<input type="text" onChange={this.handleInput.bind(this, )}></input>
+				<button onClick={this.toggleNoteHandler}>Toggle Note</button>
 
-				<button onClick={this.changeTittleHandler.bind(this, "change")}>Change Tittle</button>
-				{ this.state.note.map((note, index) => {
-					return (<Note key={index} name={note.name} text={note.text} onChangeTittle={this.changeTittleHandler.bind(this, note.name)}></Note>)
-				})}
+					{ this.state.showNote ? this.state.note.map((note, index) => {	
+						return (
+							<Note key={index} name={note.name} text={note.text} 
+							onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
+							onChangeName={event => this.onChangeName(event.target.value, index)}
+							onDelete={this.deleteHandler.bind(this, index)}
+						/>
+						)
+					})
+					:null
+				}
 			</div>
 		);
 	}

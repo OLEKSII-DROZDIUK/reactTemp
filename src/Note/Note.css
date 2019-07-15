@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a, li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.Note {
+    border: 1px solid #ccc;
+    display:inline;
+
+}
