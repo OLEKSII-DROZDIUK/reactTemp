@@ -3,16 +3,22 @@ import Note from "./Note/Note"
 import './App.css';
 
 class App extends Component {
-	state = {
-		note: [
-			{name:"One", text: "lorem5"},
-			{name:"two", text: "lorem5loremlorem"},
-			{name:"three", text: "lorem1111111111111111111115"},
-			{name:"four", text: "best text"},
-		],
-		pageTittle: "My react task",
-		showNote: false
+
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			note: [
+				{name:"One", text: "lorem5"},
+				{name:"two", text: "lorem5loremlorem"},
+				{name:"three", text: "lorem1111111111111111111115"},
+				{name:"four", text: "best text"},
+			],
+			pageTittle: "My react task",
+			showNote: false
+		}
 	}
+
 
 	changeTittleHandler = (newTittle) => {
 	
@@ -25,7 +31,6 @@ class App extends Component {
 	toggleNoteHandler = () => {
 		this.setState({
 			showNote: !this.state.showNote
-
 		})
 	}
 
@@ -49,27 +54,32 @@ class App extends Component {
 		})
 	}
 
-	render(){
+	componentWillMount () {
+		
+	}
 
-		const note = this.state.note;
+	componentDidMount () {
+		
+	}
+
+	render(){
 
 		return (
 			<div className="App" style={{ackgroundColor: "yellow"}}>
-				<h1>{this.state.pageTittle}</h1>
+				<h1>{this.props.tittle}</h1>
 
-				<button onClick={this.toggleNoteHandler}>Toggle Note</button>
+				<button className="toggle-btn" onClick={this.toggleNoteHandler}>Toggle Note</button>
 
-					{ this.state.showNote ? this.state.note.map((note, index) => {	
-						return (
-							<Note key={index} name={note.name} text={note.text} 
-							onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
-							onChangeName={event => this.onChangeName(event.target.value, index)}
-							onDelete={this.deleteHandler.bind(this, index)}
-						/>
-						)
-					})
-					:null
-				}
+				{ this.state.showNote ? this.state.note.map((note, index) => {	
+					return (
+					
+					<Note key={index} name={note.name} text={note.text} 
+					onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
+					onChangeName={event => this.onChangeName(event.target.value, index)}
+					onDelete={this.deleteHandler.bind(this, index)}
+					/>
+					)
+				}):null}
 			</div>
 		);
 	}
