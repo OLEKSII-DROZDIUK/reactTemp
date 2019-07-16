@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Note from "./Note/Note"
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary"
 import './App.css';
 
 class App extends Component {
@@ -64,6 +65,10 @@ class App extends Component {
 
 	render(){
 
+		if(Math.random()>0.7){
+			throw new Error("fail!!!!!!!")
+		}
+
 		return (
 			<div className="App" style={{ackgroundColor: "yellow"}}>
 				<h1>{this.props.tittle}</h1>
@@ -72,13 +77,12 @@ class App extends Component {
 
 				{ this.state.showNote ? this.state.note.map((note, index) => {	
 					return (
-					
-					<Note key={index} name={note.name} text={note.text} 
-					onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
-					onChangeName={event => this.onChangeName(event.target.value, index)}
-					onDelete={this.deleteHandler.bind(this, index)}
-					/>
-					)
+					<ErrorBoundary key={index}>
+						<Note name={note.name} text={note.text} 
+						onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
+						onChangeName={event => this.onChangeName(event.target.value, index)}
+						onDelete={this.deleteHandler.bind(this, index)}/>
+					</ErrorBoundary>)
 				}):null}
 			</div>
 		);
