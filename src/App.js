@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Note from "./Note/Note"
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary"
+import Note from "./Note/Note";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import Counter from "./Counter/Counter";
 import './App.css';
 
 class App extends Component {
@@ -20,12 +21,10 @@ class App extends Component {
 		}
 	}
 
-
 	changeTittleHandler = (newTittle) => {
 	
 		this.setState({
 			pageTittle: newTittle
-
 		})
 	};
 
@@ -46,9 +45,8 @@ class App extends Component {
 	}
 
 	deleteHandler = (index) => {
-		let note = [...this.state.note]
-
-		note.splice(index, 1)
+		let note = [...this.state.note];
+		note.splice(index, 1);
 
 		this.setState({
 			note
@@ -64,26 +62,23 @@ class App extends Component {
 	}
 
 	render(){
-
-		if(Math.random()>0.7){
-			throw new Error("fail!!!!!!!")
-		}
+		
+		let noteRend = this.state.showNote ? this.state.note.map((note, index) => {	
+			return (
+				<Note key={index} name={note.name} text={note.text} 
+				onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
+				onChangeName={event => this.onChangeName(event.target.value, index)}
+				onDelete={this.deleteHandler.bind(this, index)}/>
+			)
+		}):null
 
 		return (
 			<div className="App" style={{ackgroundColor: "yellow"}}>
 				<h1>{this.props.tittle}</h1>
-
+				<Counter/>
+				<hr style={{width:"100%", margin:"10px 0px"}}/>
 				<button className="toggle-btn" onClick={this.toggleNoteHandler}>Toggle Note</button>
-
-				{ this.state.showNote ? this.state.note.map((note, index) => {	
-					return (
-					<ErrorBoundary key={index}>
-						<Note name={note.name} text={note.text} 
-						onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
-						onChangeName={event => this.onChangeName(event.target.value, index)}
-						onDelete={this.deleteHandler.bind(this, index)}/>
-					</ErrorBoundary>)
-				}):null}
+				<ErrorBoundary>{ noteRend }</ErrorBoundary>
 			</div>
 		);
 	}
