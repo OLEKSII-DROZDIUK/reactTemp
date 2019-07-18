@@ -14,3 +14,17 @@ a, li {
     cursor:pointer ;
 
 }
+
+.Note>button {
+    margin-top:10px;
+    padding:5px 10px;
+}
+
+input:active {
+    outline: none;
+}
+
+.push-main {
+    background:yellow;
+    opacity:1;
+}

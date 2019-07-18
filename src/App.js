@@ -17,7 +17,7 @@ class App extends Component {
 				{name:"four", text: "best text"},
 			],
 			pageTittle: "My react task",
-			showNote: false
+			showNote: false,
 		}
 	}
 
@@ -65,7 +65,7 @@ class App extends Component {
 		
 		let noteRend = this.state.showNote ? this.state.note.map((note, index) => {	
 			return (
-				<Note key={index} name={note.name} text={note.text} 
+				<Note index={index} key={index} name={note.name} text={note.text} 
 				onChangeTittle={this.changeTittleHandler.bind(this, note.name)} 
 				onChangeName={event => this.onChangeName(event.target.value, index)}
 				onDelete={this.deleteHandler.bind(this, index)}/>
