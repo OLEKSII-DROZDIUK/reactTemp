@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import Note from "./Note/Note";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Counter from "./Counter/Counter";
+import RouteLink from "./RouteLink/RouteLink";
+import MainNav from "./MainNav/MainNav";
 import './App.css';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import createBrowserHistory from 'history/createBrowserHistory';
+
+const history = createBrowserHistory();
 
 class App extends Component {
 
@@ -73,13 +79,20 @@ class App extends Component {
 		}):null
 
 		return (
-			<div className="App" style={{ackgroundColor: "yellow"}}>
-				<h1>{this.props.tittle}</h1>
-				<Counter/>
-				<hr style={{width:"100%", margin:"10px 0px"}}/>
-				<button className="toggle-btn" onClick={this.toggleNoteHandler}>Toggle Note</button>
-				<ErrorBoundary>{ noteRend }</ErrorBoundary>
-			</div>
+			<ErrorBoundary>
+				<div className="App" style={{ackgroundColor: "yellow"}}>
+					<h1>{this.props.tittle}</h1>
+					<BrowserRouter>
+					<MainNav/>
+						<Route path="/" component={null}/>
+						<Route path="/counter" component={Counter}/>
+						<Route path="/link" component={RouteLink}/>
+					</BrowserRouter>
+					<hr style={{width:"100%", margin:"10px 0px"}}/>
+					<button className="toggle-btn" onClick={this.toggleNoteHandler}>Toggle Note</button>
+					{ noteRend }
+				</div>
+			</ErrorBoundary>
 		);
 	}
 }

@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Push from "../Push/Push";
 
 class Counter extends Component {
 
@@ -30,7 +29,6 @@ class Counter extends Component {
         return (
             <>
                 <h2 key={"0"}>Counter {this.state.counter}</h2>
-                <Push/>
                 <div key={"1"}>
                    <button style={{padding:"5px 10px", backgroundColor: "green", border:"none"}} onClick={this.addCounter}>+</button>
                    <button style={{padding:"5px 10px", backgroundColor: "red", border:"none"}} onClick={this.delCounter}>-</button>
