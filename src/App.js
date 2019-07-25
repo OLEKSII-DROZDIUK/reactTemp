@@ -5,10 +5,10 @@ import Counter from "./Counter/Counter";
 import RouteLink from "./RouteLink/RouteLink";
 import MainNav from "./MainNav/MainNav";
 import './App.css';
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import createBrowserHistory from 'history/createBrowserHistory';
+import { BrowserRouter, Route} from "react-router-dom";
+// import createBrowserHistory from 'history/createBrowserHistory';
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 class App extends Component {
 

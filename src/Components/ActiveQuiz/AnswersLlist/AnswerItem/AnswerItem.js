@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './AnswerItem.css';
 
 const AnswerItem = props => {
