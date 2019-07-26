@@ -19,18 +19,15 @@
 }
 
 .FinishedQuiz button {
-    padding:10px 20px;
-    font-size:18px;
-    font-weight: 800;
-    margin:25px 0px 0px 0px;
-    background: yellow;
-    color:green;
-    border:1px solid black;
-    border-radius: 5px;
+    margin-top:25px;
 }
 
-.FinishedQuiz button:hover {
-    background: linear-gradient(90deg, #5041b2 55%, #7969e6 100%);
-    color:white;
-    border:1px solid white;
+.fa-times {
+    color:red;
+    font-size:22px;
+}
+
+.fa-check {
+    color:green;
+    font-size:22px;
 }

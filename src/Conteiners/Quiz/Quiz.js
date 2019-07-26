@@ -7,7 +7,7 @@ class Quiz extends Component {
 
     state = {
         results: {},  //
-        isFinished: false,
+        isFinished: true,
         activeQuestion: 0,
         answerState: null,
         quiz: [
@@ -22,7 +22,6 @@ class Quiz extends Component {
                     {text: "Black", id: 4}
                 ]
             },
-
             {
                 question: "color of Jack Sparrow mark?",
                 rightAnwerId: 4,
@@ -33,6 +32,19 @@ class Quiz extends Component {
                     {text: "White", id: 3},
                     {text: "Black", id: 4},
                     {text: "Orange", id: 5},
+                    
+                ]
+            },
+            {
+                question: "100 * 10 - 50 = ?",
+                rightAnwerId: 2,
+                id:3,
+                answers: [
+                    {text: "995", id: 1},
+                    {text: "950", id: 2},
+                    {text: "900", id: 3},
+                    {text: "60", id: 4},
+                    {text: "550", id: 5},
                     
                 ]
             }

@@ -16,8 +16,7 @@ const ActiveQuiz = (props) => {
             onAnswerClick={props.onAnswerClick} 
             state={props.state}/>
         </div>
-    )
- 
+    ) 
 }
 
 export default ActiveQuiz;

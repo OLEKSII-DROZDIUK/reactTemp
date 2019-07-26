@@ -1,18 +1,15 @@
 import React from 'react';
 import './FinishedQuiz.css';
+import Button from "../Ui/Button/Button";
 
 const FinishedQuiz = props => {
 
-    const successCout = Object.keys(props.results).reduce(function (total, key) {  //ned fix here
-        if(props.results[key] === 'seccess'){
+    const successCout = Object.keys(props.results).reduce(function (total, key) { 
+        if(props.results[key] === 'success') {
             total++;
-            console.log(total)
         }
-
         return total;
-
     }, 0);
-
 
     return (
         <div className="FinishedQuiz" style={{textAlign:'center',color:'white',padding:"10px 0px"}}>
@@ -31,9 +28,17 @@ const FinishedQuiz = props => {
                 }) }
             </ul>
             <p>Correct: {successCout} of { props.quiz.length }</p>
-
             <div>
-                <button onClick={() => {props.onReloadQuiz()}}>Try again</button>
+                {/* <button onClick={() => {props.onReloadQuiz()}}>Try again</button> */}
+                <Button 
+                    onClick={() => {props.onReloadQuiz()}}
+                    type="primary">
+                Repead
+                </Button>
+                <Button 
+                    type="success">
+                Go to question list
+                </Button>
             </div>
         </div>
     )
